@@ -238,29 +238,22 @@ function App() {
           <p className="contact-subtitle">Siempre estoy abierto a nuevas oportunidades y proyectos interesantes</p>
           
           <section className="contact-methods">
-            <a href="mailto:hello@example.com" className="contact-card">
+            <a href="mailto:jpmay1117@gmail.com" className="contact-card">
               <span className="contact-icon">✉️</span>
               <h3>Email</h3>
               <p>jpmay1117@gmail.com</p>
             </a>
-            <a href="#/" className="contact-card">
+            <a href="https://www.linkedin.com/in/axwyk" className="contact-card" target="_blank" rel="noopener noreferrer">
               <span className="contact-icon">💼</span>
               <h3>LinkedIn</h3>
               <p>linkedin.com/in/Axwyk</p>
             </a>
-            <a href="#/" className="contact-card">
+            <a href="https://github.com/Axwyk" className="contact-card" target="_blank" rel="noopener noreferrer">
               <span className="contact-icon">💻</span>
               <h3>GitHub</h3>
               <p>github.com/Axwyk</p>
             </a>
           </section>
-
-          <form className="contact-form">
-            <input type="text" placeholder="Tu nombre" required />
-            <input type="email" placeholder="Tu email" required />
-            <textarea placeholder="Tu mensaje" rows="5" required></textarea>
-            <button type="submit" className="btn btn-primary">Enviar mensaje</button>
-          </form>
         </section>
       </section>
 

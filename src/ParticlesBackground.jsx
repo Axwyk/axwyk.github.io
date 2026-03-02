@@ -23,8 +23,8 @@ export default function ParticlesBackground() {
           },
           move: {
             enable: true,
-            speed: 0.7,
-            direction: "none",
+            speed: 3,
+            direction: "random",
             random: true,
             straight: false,
             out_mode: "out",
