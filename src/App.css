@@ -1,3 +1,59 @@
+.particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1;
+  pointer-events: none;
+  background: transparent;
+}
+
+.about, .projects, .contact {
+  position: relative;
+  overflow: hidden;
+}
+.about .container, .projects .container, .contact .container {
+  position: relative;
+  z-index: 2;
+
+}
+html {
+  scroll-behavior: smooth;
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+/* Botón flotante para activar/desactivar partículas */
+.toggle-light-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 30;
+  background: rgba(20,20,30,0.7);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.toggle-light-btn:hover {
+  transform: scale(1.12);
+  background: rgba(40,40,60,0.85);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+.toggle-light-btn.on {
+  color: #ffe066;
+  text-shadow: 0 0 8px #ffe066;
+}
+.toggle-light-btn.off {
+  color: #888;
+  text-shadow: none;
+}
 * {
   margin: 0;
   padding: 0;
@@ -28,6 +84,8 @@ body {
 }
 
 .App {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -125,13 +183,13 @@ body {
 /* Hero Section */
 .hero {
   margin-top: 0;
-  min-height: calc(100vh - var(--navbar-height));
+  min-height: 100vh;
   position: relative;
   display: flex;
   align-items: center;
   padding: 4rem 2rem;
-  background: linear-gradient(180deg, rgba(10,20,30,0.4), transparent 40%);
-  overflow: visible;
+  background: transparent;
+  overflow: hidden;
 }
 
 /* Centered hero variant for full-screen intro */
@@ -167,8 +225,21 @@ body {
   font-size: 3.5rem;
   margin-bottom: 1rem;
   color: var(--accent-color);
-  text-shadow: 0 6px 24px rgba(0,0,0,0.6);
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  text-shadow: 0 6px 24px rgba(0,0,0,0.6), 0 0 16px #b3e5fc;
+  animation: slideInLeft 1s cubic-bezier(.23,1.02,.64,.97) both, glowText 2.5s ease-in-out 1.2s 1 alternate;
 }
+
+@keyframes glowText {
+  0% {
+    text-shadow: 0 6px 24px rgba(0,0,0,0.6), 0 0 0px #b3e5fc;
+  }
+  100% {
+    text-shadow: 0 6px 24px rgba(0,0,0,0.6), 0 0 32px #b3e5fc;
+  }
+}
+
 
 .hero-centered .subtitle {
   margin-bottom: 2rem;
@@ -232,6 +303,7 @@ body {
   color: var(--accent-color);
   border: 1px solid rgba(159,191,220,0.06);
   box-shadow: 0 6px 18px rgba(3,10,16,0.6);
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .btn-primary:hover {
@@ -271,8 +343,8 @@ body {
 /* About Section */
 .about {
   padding: 6rem 2rem;
-  background: linear-gradient(180deg, rgba(6,12,18,0.35), rgba(6,12,18,0.6));
-  border-top: 1px solid rgba(255,255,255,0.02);
+  background: linear-gradient(180deg, rgba(6,12,18,0.18), rgba(6,12,18,0.28));
+  border-top: 5px solid rgba(255,255,255,0.02);
 }
 
 .section-title {
@@ -347,10 +419,11 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
+
 }
 
 .proyecto-card {
-  background: linear-gradient(180deg, rgba(10,20,28,0.45), rgba(6,12,18,0.6));
+  background: linear-gradient(180deg, rgba(10,20,28,0.18), rgba(6,12,18,0.28));
   padding: 2rem;
   border-radius: 1rem;
   border: 1px solid rgba(255,255,255,0.02);
@@ -364,6 +437,7 @@ body {
   transform: translateY(-8px);
   border-color: rgba(159,191,220,0.14);
   box-shadow: 0 20px 40px rgba(3,10,16,0.6);
+
 }
 
 .proyecto-icon {
@@ -412,7 +486,7 @@ body {
 /* Contact Section */
 .contact {
   padding: 6rem 2rem;
-  background: var(--card-bg);
+  background: rgba(11,22,32,0.22);
 }
 
 .contact-subtitle {
@@ -552,7 +626,7 @@ body {
   border: 1px solid rgba(159,191,220,0.15);
   padding: 0.6rem 0.75rem;
   border-radius: 999px;
-  font-size: 1.4rem;
+  font-size: 0.9rem;
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(3,10,16,0.6);
   transition: transform 160ms ease, opacity 160ms ease, text-shadow 160ms ease;
@@ -570,4 +644,21 @@ body {
   background: linear-gradient(90deg, rgba(159,191,220,0.12), rgba(111,138,160,0.08));
   text-shadow: 0 0 12px rgba(159,191,220,0.6);
   border-color: rgba(159,191,220,0.3);
+}
+
+/* Wisp effect styles */
+
+.hero-centered-inner {
+  position: relative;
+  z-index: 20;
+}
+
+.particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  background: transparent;
 }

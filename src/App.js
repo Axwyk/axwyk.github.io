@@ -1,6 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import HeroWisps from './HeroWisps';
+// import HeroWisps from './HeroWisps'; // --- IGNORE ---
+import ParticlesBackground from './ParticlesBackground';
+import ParticlesBackgroundStatic from './ParticlesBackgroundStatic';
 
 function App() {
   const [activeSection, setActiveSection] = useState('inicio');
@@ -27,11 +29,11 @@ function App() {
   ];
 
   const habilidades = [
-    { nombre: 'React', nivel: 5 },
-    { nombre: 'Python', nivel: 7 },
-    { nombre: 'CSS', nivel: 4 },
-    { nombre: 'HTML', nivel: 3 },
-    { nombre: 'Git', nivel: 2 }
+    { nombre: 'React', nivel: 25 },
+    { nombre: 'Python', nivel: 27 },
+    { nombre: 'CSS', nivel: 24 },
+    { nombre: 'HTML', nivel: 23 },
+    { nombre: 'Git', nivel: 22 }
   ];
 
   const scrollToAbout = () => {
@@ -101,12 +103,14 @@ function App() {
     };
 
     window.addEventListener('scroll', handler, { passive: true });
-    // run once on mount
+    
     updateSectionOnScroll();
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
   return (
+
+  <>
     <main className={`App ${activeSection !== 'inicio' ? 'has-navbar' : ''}`}>
       {/* Navbar */}
       <nav className={`navbar ${activeSection !== 'inicio' ? 'visible' : 'hidden'}`}>
@@ -123,28 +127,57 @@ function App() {
 
       {/* Hero Section*/}
       <section id="inicio" className="hero hero-centered">
-        {showWisps && <HeroWisps />}
+        {showWisps && <ParticlesBackground />}
         <div className="hero-centered-inner">
           <h1 className="title-main">Hola, soy Patrick</h1>
           <p className="subtitle">Estudiante de Tecnologia de Desarrollo de Software y futuro desarrollador.</p>
           <div className="cta-buttons">
-            <button className="btn btn-primary" onClick={scrollToAbout}>Ver más</button>
+            <button className="btn btn-primary" onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById('sobre');
+              if (el) {
+                const navbarHeight = 80;
+                const targetY = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                const startY = window.pageYOffset;
+                const distance = targetY - startY;
+                const duration = 600;
+                let start = null;
+
+                function step(timestamp) {
+                  if (!start) start = timestamp;
+                  const progress = Math.min((timestamp - start) / duration, 1);
+                  const ease = progress < 0.5
+                    ? 2 * progress * progress
+                    : -1 + (4 - 2 * progress) * progress;
+                  window.scrollTo(0, startY + distance * ease);
+                  if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                  }
+                }
+                window.requestAnimationFrame(step);
+              }
+            }}>Ver más</button>
           </div>
         </div>
 
         <button
-          className={`preview-toggle ${showWisps ? 'active' : ''}`}
+          className={`toggle-light-btn ${showWisps ? 'on' : 'off'}`}
           aria-pressed={showWisps}
           onClick={() => setShowWisps((s) => !s)}
-          title={showWisps ? 'Desactivar efecto' : 'Previsualizar efecto'}
-          aria-label={showWisps ? 'Desactivar efecto' : 'Previsualizar efecto'}
+          aria-label={showWisps ? 'Desactivar partículas' : 'Activar partículas'}
+          title={showWisps ? 'Desactivar partículas' : 'Activar partículas'}
         >
-          💡
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="rgb(255, 214, 187)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2v10"/>
+            <path d="M6.2 17.8a7 7 0 1 0 11.6 0"/>
+          </svg>
         </button>
       </section>
 
       {/* About Section */}
-      <section id="sobre" className="about">
+      <section id="sobre" className="about" style={{position: 'relative', overflow: 'hidden'}}>
+        <ParticlesBackgroundStatic />
         <section className="container">
           <h2 className="section-title">Sobre mí</h2>
           <section className="about-content">
@@ -154,8 +187,8 @@ function App() {
                 Enfocado en aprendizaje continuo, resolución de problemas y buenas prácticas para construir proyectos funcionales y escalables.
               </p>
               <p>
-                Mi enfoque es escribir código limpio, eficiente y mantenible. Estoy en constante aprendizaje 
-                y actualización con las últimas tecnologías del ecosistema JavaScript.
+                Mi enfoque es escribir código limpio, eficiente y mantenible. Estoy en proceso de aprendizaje 
+                de las últimas tecnologías del ecosistema Phyton, JavaScript y React.
               </p>
             </article>
             <aside className="skills-section">
@@ -175,7 +208,8 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="proyectos" className="projects">
+      <section id="proyectos" className="projects" style={{position: 'relative', overflow: 'hidden'}}>
+        <ParticlesBackgroundStatic />
         <section className="container">
           <h2 className="section-title">Mis Proyectos</h2>
           <section className="projects-grid">
@@ -197,7 +231,8 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contacto" className="contact">
+      <section id="contacto" className="contact" style={{position: 'relative', overflow: 'hidden'}}>
+        <ParticlesBackgroundStatic />
         <section className="container">
           <h2 className="section-title">¡Contacta conmigo!</h2>
           <p className="contact-subtitle">Siempre estoy abierto a nuevas oportunidades y proyectos interesantes</p>
@@ -234,6 +269,7 @@ function App() {
         <p>&copy; 2026 Axwyk. Todos los derechos reservados.</p>
       </footer>
     </main>
+  </>
   );
 }
 
