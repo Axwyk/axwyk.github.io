@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import ParticlesBackground from './ParticlesBackground';
 import ParticlesBackgroundStatic from './ParticlesBackgroundStatic';
 
+// Ruta pública del icono Vialtros
+const vialtrosIcon = process.env.PUBLIC_URL + '/vialtros_icon.svg';
+
 function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   // Animación de puntos en el fondo del hero
@@ -26,6 +29,14 @@ function App() {
       imagen: '✓',
       link: 'https://github.com/Axwyk/Grafos'
     },
+      {
+        id: 3,
+        titulo: 'Vialtros',
+        descripcion: 'Proyecto Vialtros publicado en GitHub Pages',
+        tecnologias: ['HTML', 'CSS', 'JavaScript'],
+        imagen: <img src={vialtrosIcon} alt="Vialtros icon" style={{width: 32, height: 32}} />, // Usar SVG
+        link: 'https://axwyk.github.io/Vialtros/'
+      },
   ];
 
   const habilidades = [
@@ -215,7 +226,7 @@ function App() {
           <section className="projects-grid">
             {proyectos.map((proyecto) => (
               <article key={proyecto.id} className="proyecto-card">
-                <span className="proyecto-icon">{proyecto.imagen}</span>
+                <span className="proyecto-icon">{typeof proyecto.imagen === 'string' ? proyecto.imagen : proyecto.imagen}</span>
                 <h3>{proyecto.titulo}</h3>
                 <p className="proyecto-desc">{proyecto.descripcion}</p>
                 <section className="proyecto-tech">
