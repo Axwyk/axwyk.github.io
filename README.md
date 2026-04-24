@@ -43,57 +43,6 @@ Incluye animaciones, efectos visuales y una interfaz moderna centrada en la expe
 
 ---
 
-## Estructura del proyecto
-
-```id="r1l9gf"
-src/
-│── assets/            # Recursos (iconos, imágenes)
-│── components/        # Componentes reutilizables
-│── App.js             # Componente principal
-│── App.css            # Estilos globales
-```
-
----
-
-## Instalación y uso
-
-1. Clona el repositorio:
-
-```bash id="8qz2lq"
-git clone https://github.com/Axwyk/axwyk.github.io.git
-```
-
-2. Entra al proyecto:
-
-```bash id="d3n7yt"
-cd axwyk.github.io
-```
-
-3. Instala dependencias:
-
-```bash id="k2o4bf"
-npm install
-```
-
-4. Ejecuta el proyecto:
-
-```bash id="p0n9xk"
-npm start
-```
-
----
-
-## Despliegue
-
-El proyecto se despliega usando GitHub Pages:
-
-```bash id="z1l8wp"
-npm run deploy
-```
-
----
-
 ## 📄 Licencia
 
 Este proyecto es de uso personal y educativo.
-
