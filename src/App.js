@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 // import HeroWisps from './HeroWisps'; // --- IGNORE ---
 import ParticlesBackground from './ParticlesBackground';
 import ParticlesBackgroundStatic from './ParticlesBackgroundStatic';
-
+import { FaGithub, FaLinkedin, FaEnvelope, FaLightbulb } from "react-icons/fa";
+import { MdDataObject, MdEditNote, MdLightbulbOutline, MdBrightness5, MdBrightness7 } from "react-icons/md";
 // Ruta pública del icono Vialtros
 const vialtrosIcon = process.env.PUBLIC_URL + '/vialtros_icon.svg';
 
@@ -26,7 +27,7 @@ function App() {
       titulo: 'Generador de grafos',
       descripcion: 'Generador de diferentes algoritmos de grafos',
       tecnologias: ['Phyton'],
-      imagen: '✓',
+      imagen: <MdDataObject />,
       link: 'https://github.com/Axwyk/Grafos'
     },
     {
@@ -34,7 +35,7 @@ function App() {
       titulo: 'Portfolio Personal',
       descripcion: 'Primer proyecto de portfolio con HTML, CSS y React',
       tecnologias: ['HTML', 'CSS', 'React'],
-      imagen: '🌐',
+      imagen: <MdEditNote />,
       link: 'https://axwykfirstportfolio.netlify.app'
     },
   ];
@@ -56,68 +57,26 @@ function App() {
   };
 
   useEffect(() => {
-    function updateSectionOnScroll() {
-      const mid = window.scrollY + window.innerHeight / 2;
-      const about = document.getElementById('sobre');
-      const hero = document.getElementById('inicio');
-      const proyectos = document.getElementById('proyectos');
-      const contacto = document.getElementById('contacto');
+  function handleScroll() {
+    const hero = document.getElementById('inicio');
 
-      if (about) {
-        const top = about.offsetTop;
-        const bottom = top + about.offsetHeight;
-        if (mid >= top && mid < bottom) {
-          setActiveSection('sobre');
-          return;
-        }
-      }
+    if (!hero) return;
 
-      if (hero) {
-        const top = hero.offsetTop;
-        const bottom = top + hero.offsetHeight;
-        if (mid >= top && mid < bottom) {
-          setActiveSection('inicio');
-          return;
-        }
-      }
+    const heroBottom = hero.offsetTop + hero.offsetHeight;
 
-      if (proyectos) {
-        const top = proyectos.offsetTop;
-        const bottom = top + proyectos.offsetHeight;
-        if (mid >= top && mid < bottom) {
-          setActiveSection('proyectos');
-          return;
-        }
-      }
-
-      if (contacto) {
-        const top = contacto.offsetTop;
-        const bottom = top + contacto.offsetHeight;
-        if (mid >= top && mid < bottom) {
-          setActiveSection('contacto');
-          return;
-        }
-      }
-
-      setActiveSection('inicio');
+    if (window.scrollY < heroBottom - 80) {
+      setActiveSection('inicio'); // ocultar navbar
+    } else {
+      setActiveSection('other'); // mostrar navbar
     }
+  }
 
-    let ticking = false;
-    const handler = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateSectionOnScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+  window.addEventListener('scroll', handleScroll, { passive: true });
 
-    window.addEventListener('scroll', handler, { passive: true });
-    
-    updateSectionOnScroll();
-    return () => window.removeEventListener('scroll', handler);
-  }, []);
+  handleScroll();
+
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
 
   return (
 
@@ -175,102 +134,98 @@ function App() {
           className={`toggle-light-btn ${showWisps ? 'on' : 'off'}`}
           aria-pressed={showWisps}
           onClick={() => setShowWisps((s) => !s)}
-          aria-label={showWisps ? 'Desactivar partículas' : 'Activar partículas'}
-          title={showWisps ? 'Desactivar partículas' : 'Activar partículas'}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="rgb(255, 214, 187)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2v10"/>
-            <path d="M6.2 17.8a7 7 0 1 0 11.6 0"/>
-          </svg>
+          {showWisps ? <MdBrightness5 /> : <MdBrightness7 />}
         </button>
       </section>
 
-      {/* About Section */}
-      <section id="sobre" className="about" style={{position: 'relative', overflow: 'hidden'}}>
+      <section className="particles-static">
         <ParticlesBackgroundStatic />
-        <section className="container">
-          <h2 className="section-title">Sobre mí</h2>
-          <section className="about-content">
-            <article className="about-text">
-              <p>
-                Estudiante de Desarrollo de Software con interés en programación, desarrollo de videojuegos y creación de soluciones eficientes.
-                Enfocado en aprendizaje continuo, resolución de problemas y buenas prácticas para construir proyectos funcionales y escalables.
-              </p>
-              <p>
-                Mi enfoque es escribir código limpio, eficiente y mantenible. Estoy en proceso de aprendizaje 
-                de las últimas tecnologías del ecosistema Phyton, JavaScript y React.
-              </p>
-            </article>
-            <aside className="skills-section">
-              <h3>Habilidades Técnicas</h3>
-              <ul>
-                {habilidades.map((skill) => (
-                  <li key={skill.nombre} className="skill-item">
-                    <span className="skill-name">{skill.nombre}</span>
-                    <span className="skill-bar"><span className="skill-progress" style={{ width: `${skill.nivel}%` }}></span></span>
-                    <span className="skill-level">{skill.nivel}%</span>
-                  </li>
-                ))}
-              </ul>
-            </aside>
-          </section>
-        </section>
-      </section>
-
-      {/* Projects Section */}
-      <section id="proyectos" className="projects" style={{position: 'relative', overflow: 'hidden'}}>
-        <ParticlesBackgroundStatic />
-        <section className="container">
-          <h2 className="section-title">Mis Proyectos</h2>
-          <section className="projects-grid">
-            {proyectos.map((proyecto) => (
-              <article key={proyecto.id} className="proyecto-card">
-                <span className="proyecto-icon">{typeof proyecto.imagen === 'string' ? proyecto.imagen : proyecto.imagen}</span>
-                <h3>{proyecto.titulo}</h3>
-                <p className="proyecto-desc">{proyecto.descripcion}</p>
-                <section className="proyecto-tech">
-                  {proyecto.tecnologias.map((tech) => (
-                    <span key={tech} className="tech-tag">{tech}</span>
-                  ))}
-                </section>
-                <a href={proyecto.link} target="_blank" rel="noopener noreferrer" className="proyecto-link">Ver más →</a>
-              </article>
-            ))}
-          </section>
-        </section>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contacto" className="contact" style={{position: 'relative', overflow: 'hidden'}}>
-        <ParticlesBackgroundStatic />
-        <section className="container">
-          <h2 className="section-title">¡Contacta conmigo!</h2>
-          <p className="contact-subtitle">Siempre estoy abierto a nuevas oportunidades y proyectos interesantes</p>
+        {/* About Section */}
+        <section id="sobre" className="about" style={{position: 'relative', overflow: 'hidden'}}>
           
-          <section className="contact-methods">
-            <a href="mailto:jpmay1117@gmail.com" className="contact-card">
-              <span className="contact-icon">✉️</span>
-              <h3>Email</h3>
-              <p>jpmay1117@gmail.com</p>
-            </a>
-            <a href="https://www.linkedin.com/in/axwyk" className="contact-card" target="_blank" rel="noopener noreferrer">
-              <span className="contact-icon">💼</span>
-              <h3>LinkedIn</h3>
-              <p>linkedin.com/in/Axwyk</p>
-            </a>
-            <a href="https://github.com/Axwyk" className="contact-card" target="_blank" rel="noopener noreferrer">
-              <span className="contact-icon">💻</span>
-              <h3>GitHub</h3>
-              <p>github.com/Axwyk</p>
-            </a>
+          <section className="container">
+            <h2 className="section-title">Sobre mí</h2>
+            <section className="about-content">
+              <article className="about-text">
+                <p>
+                  Estudiante de Desarrollo de Software con interés en programación, desarrollo de videojuegos y creación de soluciones eficientes.
+                  Enfocado en aprendizaje continuo, resolución de problemas y buenas prácticas para construir proyectos funcionales y escalables.
+                </p>
+                <p>
+                  Mi enfoque es escribir código limpio, eficiente y mantenible. Estoy en proceso de aprendizaje 
+                  de las últimas tecnologías del ecosistema Phyton, JavaScript y React.
+                </p>
+              </article>
+              <aside className="skills-section">
+                <h3>Habilidades Técnicas</h3>
+                <ul>
+                  {habilidades.map((skill) => (
+                    <li key={skill.nombre} className="skill-item">
+                      <span className="skill-name">{skill.nombre}</span>
+                      <span className="skill-bar"><span className="skill-progress" style={{ width: `${skill.nivel}%` }}></span></span>
+                      <span className="skill-level">{skill.nivel}%</span>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            </section>
           </section>
         </section>
-      </section>
 
+        {/* Projects Section */}
+        <section id="proyectos" className="projects" style={{position: 'relative', overflow: 'hidden'}}>
+          
+          <section className="container">
+            <h2 className="section-title">Mis Proyectos</h2>
+            <section className="projects-grid">
+              {proyectos.map((proyecto) => (
+                <article key={proyecto.id} className="proyecto-card">
+                  <span className="proyecto-icon">{typeof proyecto.imagen === 'string' ? proyecto.imagen : proyecto.imagen}</span>
+                  <h3>{proyecto.titulo}</h3>
+                  <p className="proyecto-desc">{proyecto.descripcion}</p>
+                  <section className="proyecto-tech">
+                    {proyecto.tecnologias.map((tech) => (
+                      <span key={tech} className="tech-tag">{tech}</span>
+                    ))}
+                  </section>
+                  <a href={proyecto.link} target="_blank" rel="noopener noreferrer" className="proyecto-link">Ver más →</a>
+                </article>
+              ))}
+            </section>
+          </section>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contacto" className="contact" style={{position: 'relative', overflow: 'hidden'}}>
+          
+          <section className="container">
+            <h2 className="section-title">¡Contacta conmigo!</h2>
+            <p className="contact-subtitle">Siempre estoy abierto a nuevas oportunidades y proyectos interesantes</p>
+            
+            <section className="contact-methods">
+              <a href="mailto:jpmay1117@gmail.com" className="contact-card">
+                <span className="contact-icon"><FaEnvelope /></span>
+                <h3>Email</h3>
+
+              </a>
+              <a href="https://www.linkedin.com/in/axwyk" className="contact-card" target="_blank" rel="noopener noreferrer">
+                <span className="contact-icon"><FaLinkedin /></span>
+                <h3>LinkedIn</h3>
+
+              </a>
+              <a href="https://github.com/Axwyk" className="contact-card" target="_blank" rel="noopener noreferrer">
+                <span className="contact-icon"><FaGithub /></span>
+                <h3>GitHub</h3>
+
+              </a>
+            </section>
+          </section>
+        </section>
+      </section>         
       {/* Footer */}
       <footer className="footer">
-        <p>&copy; 2026 Axwyk. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Patrick Marquez. Todos los derechos reservados.</p>
       </footer>
     </main>
   </>

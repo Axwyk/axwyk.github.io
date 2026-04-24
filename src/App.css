@@ -47,8 +47,8 @@ html {
   box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }
 .toggle-light-btn.on {
-  color: #ffe066;
-  text-shadow: 0 0 8px #ffe066;
+  color: #849ab8d2;
+  text-shadow: 0 0 8px #ffffff;
 }
 .toggle-light-btn.off {
   color: #888;
@@ -661,4 +661,24 @@ body {
   z-index: 10;
   pointer-events: none;
   background: transparent;
+}
+
+.particles-static {
+  position: relative;
+  overflow: hidden;
+}
+
+.particles-static canvas,
+.particles-static > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.particles-static > section {
+  position: relative;
+  z-index: 1;
 }
