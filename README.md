@@ -1,11 +1,11 @@
-# Portfolio Personal - Axwyk
+# Portfolio Personal - Patrick Marquez
 
 Este es mi portfolio personal desarrollado con **React**, donde presento información sobre mí, mis habilidades y algunos de mis proyectos.
 
 ## Demo
 
 Puedes ver el proyecto en vivo aquí:
-👉 https://axwyk.github.io/
+- https://axwyk.github.io/
 
 ---
 
@@ -14,14 +14,14 @@ Puedes ver el proyecto en vivo aquí:
 Este portfolio fue creado con el objetivo de:
 
 * Mostrar mis habilidades en desarrollo web
-* Presentar proyectos personales
+* Presentar proyectos personales (incluyendo Vialtros y otros)
 * Tener una presencia profesional online
 
 Incluye animaciones, efectos visuales y una interfaz moderna centrada en la experiencia del usuario.
 
 ---
 
-## Tecnologías utilizadas
+## ⚙️ Tecnologías utilizadas
 
 * React
 * JavaScript (ES6+)
@@ -34,18 +34,18 @@ Incluye animaciones, efectos visuales y una interfaz moderna centrada en la expe
 
 ## Características
 
-* 🌌 Fondo animado con partículas (activable/desactivable)
-* 📱 Diseño responsive
-* 🧭 Navegación dinámica según scroll
-* 🎯 Secciones: Inicio, Sobre mí, Proyectos y Contacto
-* 🔗 Integración con GitHub, LinkedIn y correo
-* 🎨 Iconos modernos (sin emojis)
+*  Fondo animado con partículas (activable/desactivable)
+*  Diseño responsive
+*  Navegación dinámica según scroll
+*  Secciones: Inicio, Sobre mí, Proyectos y Contacto
+*  Integración con GitHub, LinkedIn y correo
+*  Uso de iconos modernos (sin emojis)
 
 ---
 
 ## Estructura del proyecto
 
-```
+```id="r1l9gf"
 src/
 │── assets/            # Recursos (iconos, imágenes)
 │── components/        # Componentes reutilizables
@@ -59,25 +59,25 @@ src/
 
 1. Clona el repositorio:
 
-```bash
+```bash id="8qz2lq"
 git clone https://github.com/Axwyk/axwyk.github.io.git
 ```
 
 2. Entra al proyecto:
 
-```bash
+```bash id="d3n7yt"
 cd axwyk.github.io
 ```
 
 3. Instala dependencias:
 
-```bash
+```bash id="k2o4bf"
 npm install
 ```
 
 4. Ejecuta el proyecto:
 
-```bash
+```bash id="p0n9xk"
 npm start
 ```
 
@@ -87,10 +87,13 @@ npm start
 
 El proyecto se despliega usando GitHub Pages:
 
-```bash
+```bash id="z1l8wp"
 npm run deploy
 ```
+
+---
 
 ## 📄 Licencia
 
 Este proyecto es de uso personal y educativo.
+
