@@ -1,15 +1,15 @@
-# 🚀 Portfolio Personal - Axwyk
+# Portfolio Personal - Axwyk
 
 Este es mi portfolio personal desarrollado con **React**, donde presento información sobre mí, mis habilidades y algunos de mis proyectos.
 
-## 🌐 Demo
+## Demo
 
 Puedes ver el proyecto en vivo aquí:
 👉 https://axwyk.github.io/Vialtros/
 
 ---
 
-## 🧠 Descripción
+## Descripción
 
 Este portfolio fue creado con el objetivo de:
 
@@ -21,7 +21,7 @@ Incluye animaciones, efectos visuales y una interfaz moderna centrada en la expe
 
 ---
 
-## ⚙️ Tecnologías utilizadas
+## Tecnologías utilizadas
 
 * React
 * JavaScript (ES6+)
@@ -32,7 +32,7 @@ Incluye animaciones, efectos visuales y una interfaz moderna centrada en la expe
 
 ---
 
-## 🎨 Características
+## Características
 
 * 🌌 Fondo animado con partículas (activable/desactivable)
 * 📱 Diseño responsive
@@ -43,7 +43,7 @@ Incluye animaciones, efectos visuales y una interfaz moderna centrada en la expe
 
 ---
 
-## 📁 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 src/
@@ -55,7 +55,7 @@ src/
 
 ---
 
-## 🚀 Instalación y uso
+## Instalación y uso
 
 1. Clona el repositorio:
 
@@ -83,23 +83,13 @@ npm start
 
 ---
 
-## 📦 Despliegue
+## Despliegue
 
 El proyecto se despliega usando GitHub Pages:
 
 ```bash
 npm run deploy
 ```
-
----
-
-## 📬 Contacto
-
-* 📧 Email: [jpmay1117@gmail.com](mailto:jpmay1117@gmail.com)
-* 💼 LinkedIn: https://www.linkedin.com/in/axwyk
-* 💻 GitHub: https://github.com/Axwyk
-
----
 
 ## 📄 Licencia
 
