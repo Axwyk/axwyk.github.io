@@ -5,7 +5,7 @@ Este es mi portfolio personal desarrollado con **React**, donde presento informa
 ## Demo
 
 Puedes ver el proyecto en vivo aquí:
-👉 https://axwyk.github.io/Vialtros/
+👉 https://axwyk.github.io/
 
 ---
 
