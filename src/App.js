@@ -13,14 +13,14 @@ function App() {
   const [showWisps, setShowWisps] = useState(true);
 
   const proyectos = [
-    {
-      id: 1,
-      titulo: 'Portfolio Personal',
-      descripcion: 'Primer proyecto de portfolio con HTML, CSS y React',
-      tecnologias: ['HTML', 'CSS', 'React'],
-      imagen: '🌐',
-      link: 'https://axwykfirstportfolio.netlify.app'
-    },
+      {
+        id: 1,
+        titulo: 'Vialtros',
+        descripcion: 'Proyecto Vialtros publicado en GitHub Pages',
+        tecnologias: ['HTML', 'CSS', 'JavaScript'],
+        imagen: <img src={vialtrosIcon} alt="Vialtros icon" style={{width: 42, height: 42}} />, // Usar SVG
+        link: 'https://axwyk.github.io/Vialtros/'
+      },
     {
       id: 2,
       titulo: 'Generador de grafos',
@@ -29,14 +29,14 @@ function App() {
       imagen: '✓',
       link: 'https://github.com/Axwyk/Grafos'
     },
-      {
-        id: 3,
-        titulo: 'Vialtros',
-        descripcion: 'Proyecto Vialtros publicado en GitHub Pages',
-        tecnologias: ['HTML', 'CSS', 'JavaScript'],
-        imagen: <img src={vialtrosIcon} alt="Vialtros icon" style={{width: 32, height: 32}} />, // Usar SVG
-        link: 'https://axwyk.github.io/Vialtros/'
-      },
+    {
+      id: 3,
+      titulo: 'Portfolio Personal',
+      descripcion: 'Primer proyecto de portfolio con HTML, CSS y React',
+      tecnologias: ['HTML', 'CSS', 'React'],
+      imagen: '🌐',
+      link: 'https://axwykfirstportfolio.netlify.app'
+    },
   ];
 
   const habilidades = [
@@ -44,7 +44,7 @@ function App() {
     { nombre: 'Python', nivel: 27 },
     { nombre: 'CSS', nivel: 24 },
     { nombre: 'HTML', nivel: 23 },
-    { nombre: 'Git', nivel: 22 }
+    { nombre: 'Git', nivel: 43 }
   ];
 
   const scrollToAbout = () => {
